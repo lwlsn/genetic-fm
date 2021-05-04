@@ -55,7 +55,7 @@ function setup() {
   analyzer = new p5.FFT(); 
   
   for (let i=0; i< fish.length; i++) {
-    fish[i].setupFM();
+    fish[i].preSetupFM();
   }
 
 }
