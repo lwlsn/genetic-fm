@@ -17,7 +17,7 @@ let fish = [];
 let world; 
 let populationSize = 20;
 
-let textArray = ["I am a machine", "You can get me to say stuff", "It sure is cold in here", "Did I pass the Turing Test yet?"];
+let textArray = ["I am a machine", "It sure is cold in here", "Did I pass the Turing Test yet?"];
 let textP;
 
 let backgroundImg;
@@ -47,8 +47,9 @@ function setup() {
   
   // Create text box, button for machine feedback
   textP = createP();
+  textP.position(200, 700);
   button = createButton('Machine Add Options');
-  button.position(100, 650);
+  button.position(100, 100);
   button.mousePressed(updateWorld);
   
   // Create waveform analyser
@@ -63,7 +64,7 @@ function setup() {
 function draw() {
   
   if (pageCount == 0) {
-    background(49,237,244, 100);
+    background(0, 167, 225);
     textAlign(CENTER);
     textSize(45);
     text("FM Synthesis Aquarium", width/4, height/2 - 200, 500, 200);
@@ -86,7 +87,8 @@ function draw() {
 }
 
 function updateWorld() {
-  textP.html(random(textArray));
+
+  textP.html("Your machine says: " + random(textArray));
   
   let x_ = random(width);
   let y_ = random(height);

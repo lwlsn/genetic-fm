@@ -4,4 +4,25 @@ html, body {
 }
 canvas {
   display: block;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin:auto;
+}
+
+h1{
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+
+
+
+.textP {
+  margin: 5px
 }
