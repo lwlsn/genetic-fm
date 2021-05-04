@@ -37,7 +37,7 @@ class World {
       dna_ = new DNA([random(0, 1), // move speed 
                     random(0,40), // mod Frequency 
                     random(-150, -50), // mod Depth
-                    random(0,1 ), 
+                    random(40, 440), // frequency scope 
                       "sawtooth", "sine"]);
     }
     else if (rand > probs[0] && rand < probs[0] + probs[1]) {
@@ -45,14 +45,16 @@ class World {
        dna_ = new DNA([random(0, 1), // move speed
                     random(40, 80), // mod frequency
                     random(-50, 50), // mod depth
-                    random(0,1), "sine", "square"]);
+                    random(40, 440), // frequency scope..  
+                    "sine", "square"]);
     }
     else if (rand > probs[0] + probs[1]) {
       // DNA 3
       dna_ = new DNA([random(0, 1), // move speed
                      random(80, 120), // mod frequency
                      random(50,150), // mod depth
-                     random(0,1), "sine", "sine"]);
+                     random(40, 440), // frequency scope
+                     "sine", "sine"]);
     }
    
     fish.push(new Fish(l, dna_));
@@ -120,6 +122,7 @@ class World {
       if (f.dead()) {
         fish.splice(i,1);
       }
+  
       
       //make a child 
       let child = f.reproduce();

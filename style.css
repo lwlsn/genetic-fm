@@ -2,6 +2,9 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+body {background-color: #94d0da;}
+
 canvas {
   display: block;
   position: absolute;
@@ -12,8 +15,14 @@ canvas {
   margin:auto;
 }
 
-h1{
-  text-align: center;
+h1 {
+	font-family: 'Helvetica';
+    font-weight: 100;
+    font-style: normal;
+    font-size: 40px;
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
 }
 
 p {
