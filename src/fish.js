@@ -23,8 +23,6 @@ class Fish {
   setupFM() {
     // Carrier function
     
-    
-
  
     this.carrier.freq(this.dna.genes[3]); // set frequency
     this.carrier.start(); // start oscillating
@@ -70,19 +68,15 @@ class Fish {
       // Child is exact copy of single parent
       let childDNA = this.dna.copy();
       // Child DNA can mutate
-      childDNA.mutate(0.01);
+      childDNA.mutate(mutationRate);
       return new Fish(this.pos, childDNA);
     } else {
       return null;
     }
-    
-    // Avoid triggering new sound on new fish added..! 
-    for (let i=0; i< fish.length; i++) {
-      fish[i].carrier.amp(0);
-    }
-    
+
     
   }
+
   
   //Update the position
   update() {

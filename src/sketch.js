@@ -17,12 +17,13 @@ let fish = [];
 let world; 
 let populationSize = 20;
 
-let textArray = ["I am a machine", "It sure is cold in here", "Did I pass the Turing Test yet?"];
+let textArray = ["I am a machine", "It sure is cold in here", "Did I pass the Turing Test yet?", "I am aware that I am not fully self-aware yet."];
 let textP;
 
-let backgroundImg;
-let button;
-let analyzer; 
+let sliderText;
+let mutationRate = 0.1;
+
+let backgroundImg, button, analyzer; 
 let pageCount= 0;
 
 // min/max ranges for modulator
@@ -48,9 +49,14 @@ function setup() {
   // Create text box, button for machine feedback
   textP = createP();
   textP.position(200, 700);
+  textFont('Helvetica');
+  textP.style('font-size', '16px');
   button = createButton('Machine Add Options');
   button.position(100, 100);
   button.mousePressed(updateWorld);
+  //Mutation rate slider 
+  slider = createSlider(0, 200, 100);
+  slider.style('visibility', 'hidden');
   
   // Create waveform analyser
   analyzer = new p5.FFT(); 
@@ -58,10 +64,10 @@ function setup() {
   for (let i=0; i< fish.length; i++) {
     fish[i].preSetupFM();
   }
-
 }
 
 function draw() {
+
   
   if (pageCount == 0) {
     background(0, 167, 225);
@@ -79,15 +85,25 @@ function draw() {
   else {
     
   image(backgroundImg, 0, 0, width, height);
+
+  //Mutation slider text 
+  textSize(18);
+  mutationRate = slider.value()/1000;
+  slider.style('visibility', 'visible');
+  slider.position(300, 100);
+  text("Mutation rate:" + mutationRate, 80, 50);
   
   waveform = analyzer.waveform();
   world.run();
+
+  
   }
   
 }
 
 function updateWorld() {
 
+  textSize(32);
   textP.html("Your machine says: " + random(textArray));
   
   let x_ = random(width);
@@ -100,7 +116,6 @@ function updateWorld() {
 function mousePressed() {
   world.clicked();
   
-   
   pageCount += 1;
 
 }

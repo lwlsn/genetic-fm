@@ -11,7 +11,7 @@ class DNA {
       this.genes = [random(0, 1), // Fish move speed 
         random(0, 112), // modulation frequency
         random(-150, 150), // modulation depth
-        random(110, 880), // frequency scope..  
+        random(110, 440), // frequency scope..  
         random(oscillatorType), //carrier osc
         random(oscillatorType), // mod osc
       ];
@@ -38,5 +38,7 @@ class DNA {
       }
     }
   }
+
+  
 
 }
