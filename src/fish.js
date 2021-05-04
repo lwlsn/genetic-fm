@@ -1,5 +1,5 @@
 class Fish {
-  constructor(l, dna_) {
+  constructor(l, dna_, carrieramp) {
     this.pos = l.copy(); //Location
     this.health = 100; //Lifespan of creature
     this.xoff = random(1000); // For perlin noise
@@ -10,12 +10,12 @@ class Fish {
     this.colour= "white";
     this.carrier = new p5.Oscillator(this.dna.genes[4]);
     this.modulator = new p5.Oscillator(this.dna.genes[5]);
+
   }
   
   
-  // To do.. where does this go?
+  //  set amplitude to 0 to avoid playing onload.. 
   preSetupFM() {
-    // set amplitude to 0 to avoid playing straight away..
     this.carrier.amp(0);  
   }
   

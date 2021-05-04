@@ -127,8 +127,7 @@ class World {
       //make a child 
       let child = f.reproduce();
       if (child != null) fish.push(child);
-      
-    
+
       
     }
     
