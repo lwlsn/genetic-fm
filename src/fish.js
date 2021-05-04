@@ -1,7 +1,7 @@
 class Fish {
   constructor(l, dna_) {
     this.pos = l.copy(); //Location
-    this.health = 150; //Lifespan of creature
+    this.health = 100; //Lifespan of creature
     this.xoff = random(1000); // For perlin noise
     this.yoff = random(1000);
     this.dna = dna_;  // dna controls its shape and sound
@@ -15,7 +15,8 @@ class Fish {
   
   // To do.. where does this go?
   preSetupFM() {
-// set amplitude to 0 to avoid playing straight away.. 
+    // set amplitude to 0 to avoid playing straight away..
+    this.carrier.amp(0);  
   }
   
   // Setup FM Synth, runs once on loading the page
@@ -23,9 +24,7 @@ class Fish {
     // Carrier function
     
     
-  
-    this.carrier.amp(0); 
-  
+
  
     this.carrier.freq(this.dna.genes[3]); // set frequency
     this.carrier.start(); // start oscillating
