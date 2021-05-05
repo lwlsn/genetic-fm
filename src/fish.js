@@ -7,7 +7,7 @@ class Fish {
     this.dna = dna_;  // dna controls its shape and sound
     this.maxspeed = map(this.dna.genes[0], 0, 1, 5, 0);
     this.r = 42;
-    this.colour= "white";
+    this.colour = "white";
     this.carrier = new p5.Oscillator(this.dna.genes[4]);
     this.modulator = new p5.Oscillator(this.dna.genes[5]);
 
@@ -111,16 +111,17 @@ class Fish {
       fill(100, 100, 200); 
     } else {
       
-      if (this.dna.genes[4] == "sine") {
-        stroke(255,206,0, this.health);
-        fill(255,206,0, this.health);
+      if (this.dna.genes[5] == "sine") {
+        stroke(255,206,0, this.health*2);
+        fill(255,206,0, this.health*2);
       }
-      else if (this.dna.genes[4] == "square") {
-        stroke(0,159,255, this.health);
-        fill(0,159,255, this.health);
-      } else {
-        stroke(75,132,108, this.health);
-        fill(75,132,108, this.health);
+      else if (this.dna.genes[5] == "square") {
+        stroke(0,159,255, this.health*2);
+        fill(0,159,255, this.health*2);
+      } 
+      else if (this.dna.genes[5] == "sawtooth") {
+        stroke(75,132,108, this.health*2);
+        fill(75,132,108, this.health*2);
       }
      
     }
@@ -130,11 +131,10 @@ class Fish {
       this.colour = [255,206,0];
     }
     if (this.dna.genes[5] == "square") {
-       this.colour = [75,132,108];
-     
+      this.colour = [0,159,255];
     }
     if (this.dna.genes[5] == "sawtooth") {
-      this.colour = [0,159,255];
+      this.colour = [75,132,108];
     }
     
     
@@ -173,43 +173,91 @@ class Fish {
     
     if (this.dna.genes[4] == "sine") {
       // fill(255,206,0, this.health);
-      ellipse(this.pos.x, this.pos.y, this.r, this.r*(0.75));
-      ellipse(this.pos.x+15, this.pos.y+5, this.r*0.65, this.r*0.65);
+      // ellipse(this.pos.x, this.pos.y, this.r, this.r*(0.75));
+      strokeWeight(2);
+      stroke(this.colour[0], this.colour[1], this.colour[2], this.health*2);
+      beginShape();
+      curveVertex(this.pos.x-25, this.pos.y);
+      curveVertex(this.pos.x-20, this.pos.y);
+      curveVertex(this.pos.x - 15, this.pos.y - 15);
+      curveVertex(this.pos.x - 10, this.pos.y);
+      curveVertex(this.pos.x - 5, this.pos.y + 15);
+      curveVertex(this.pos.x, this.pos.y);
+      curveVertex(this.pos.x + 5, this.pos.y - 15);
+      curveVertex(this.pos.x + 10, this.pos.y);
+      curveVertex(this.pos.x + 15, this.pos.y + 15);
+      curveVertex(this.pos.x + 20, this.pos.y);
+      curveVertex(this.pos.x + 20, this.pos.y);
+      endShape();
+      strokeWeight(0);
+      ellipse(this.pos.x+30, this.pos.y+5, this.r*0.65, this.r*0.65);
     
     }
     
     if (this.dna.genes[4] == "square") {
       // fill(this.colour[0], this.color[1], this.color[2], this.health);
-      rectMode(CENTER);
-      rect(this.pos.x, this.pos.y, this.r, this.r*(0.5));
-      ellipse(this.pos.x+15, this.pos.y+5, this.r*0.65, this.r*0.65);
+      strokeWeight(2);
+      stroke(this.colour[0], this.colour[1], this.colour[2], this.health*2);
+      line(this.pos.x-20, this.pos.y,this.pos.x-15, this.pos.y);
+      line(this.pos.x-15, this.pos.y,this.pos.x-15, this.pos.y-10);
+      line(this.pos.x-15, this.pos.y-10, this.pos.x-10, this.pos.y-10);
+      line(this.pos.x-10, this.pos.y-10, this.pos.x-10, this.pos.y+15);
+      line(this.pos.x-10, this.pos.y+15, this.pos.x-5, this.pos.y+15);
+      line(this.pos.x-5, this.pos.y+15, this.pos.x-5, this.pos.y-20);
+      line(this.pos.x-5, this.pos.y-20, this.pos.x, this.pos.y-20);
+      line(this.pos.x, this.pos.y-20, this.pos.x, this.pos.y+20);
+      line(this.pos.x, this.pos.y+20,this.pos.x+5, this.pos.y+20);
+      line(this.pos.x+5, this.pos.y+20, this.pos.x+5, this.pos.y-15);
+      line(this.pos.x+5, this.pos.y-15, this.pos.x+10, this.pos.y-15);
+      line(this.pos.x+10, this.pos.y-15, this.pos.x+10, this.pos.y+10);
+      line(this.pos.x+10, this.pos.y+10, this.pos.x+15, this.pos.y+10);
+      line(this.pos.x+15, this.pos.y+10, this.pos.x+15, this.pos.y);
+      line(this.pos.x+15, this.pos.y, this.pos.x+20, this.pos.y);
+      strokeWeight(0);
+      ellipse(this.pos.x+30, this.pos.y+5, this.r*0.65, this.r*0.65);
     }
     
     if (this.dna.genes[4] == "sawtooth") {
       // fill(0, this.health);
-       triangle(this.pos.x - this.r/2, this.pos.y+ this.r/2, 
-               this.pos.x - this.r/2, this.pos.y- this.r/2, 
-               this.pos.x + this.r/2, this.pos.y); 
-       ellipse(this.pos.x+15, this.pos.y+5, this.r*0.65, this.r*0.65);
+      strokeWeight(2);
+      stroke(this.colour[0], this.colour[1], this.colour[2], this.health*2);
+      line(this.pos.x-20, this.pos.y,this.pos.x-15, this.pos.y);
+      line(this.pos.x-15, this.pos.y, this.pos.x-10, this.pos.y-10);
+      line(this.pos.x-10, this.pos.y-10, this.pos.x-10, this.pos.y+15);
+      line(this.pos.x-10, this.pos.y+15, this.pos.x-5, this.pos.y-15);
+      line(this.pos.x-5, this.pos.y-15, this.pos.x-5, this.pos.y+20);
+      line(this.pos.x-5, this.pos.y-15, this.pos.x-5, this.pos.y+20);
+      line(this.pos.x-5, this.pos.y+20, this.pos.x, this.pos.y-20);
+      line(this.pos.x, this.pos.y-20, this.pos.x, this.pos.y+20);
+      line(this.pos.x, this.pos.y+20, this.pos.x+5, this.pos.y-15);
+      line(this.pos.x+5, this.pos.y-15, this.pos.x+5, this.pos.y+15);
+      line(this.pos.x+5, this.pos.y+15, this.pos.x+10, this.pos.y-10);
+      line(this.pos.x+10, this.pos.y-10, this.pos.x+10, this.pos.y);
+      line(this.pos.x+10, this.pos.y-10, this.pos.x+15, this.pos.y);
+      line(this.pos.x+15, this.pos.y, this.pos.x+20, this.pos.y);
+      strokeWeight(0);
+       ellipse(this.pos.x+30, this.pos.y+5, this.r*0.65, this.r*0.65);
     }
    
     
     // mouth
-    fill(150, this.health);
-    ellipse(this.pos.x+20, this.pos.y+15, this.r*(0.35), this.r*(0.2));
-    fill(this.colour[0], this.colour[1], this.colour[2], this.health);
-    ellipse(this.pos.x+20, this.pos.y+17, this.r*(0.3), this.r*(0.15));
+    strokeWeight(0);
+    fill(150, this.health*2);
+    ellipse(this.pos.x+35, this.pos.y+15, this.r*(0.35), this.r*(0.2));
+    fill(this.colour[0], this.colour[1], this.colour[2], this.health*2);
+    ellipse(this.pos.x+35, this.pos.y+17, this.r*(0.3), this.r*(0.15));
     
     
 
     //eye 
     fill(this.colour[0], this.colour[1], this.colour[2]);
-    ellipse(this.pos.x+15, this.pos.y+5, this.r*0.2, this.r*0.2 );
+    ellipse(this.pos.x+30, this.pos.y+5, this.r*0.2, this.r*0.2 );
     stroke("grey");
+    strokeWeight(1);
     fill("white");
-    ellipse(this.pos.x+15, this.pos.y+5, this.r*0.15, this.r*0.15);
+    ellipse(this.pos.x+30, this.pos.y+5, this.r*0.15, this.r*0.15);
     fill("black");
-    ellipse(this.pos.x+15, this.pos.y+5, this.r*0.1, this.r*0.1);
+    ellipse(this.pos.x+30, this.pos.y+5, this.r*0.1, this.r*0.1);
     
     // add waveform tail.. display only for each object?
 //     beginShape();
@@ -224,10 +272,13 @@ class Fish {
 //     }
 //     endShape();
     
+
     beginShape();
     for (let i = 0; i < waveform.length; i++) {
       let x = map(i, 0, waveform.length, this.pos.x-50, this.pos.x);
       let y = map(waveform[i], -1, 1, this.pos.y-20, this.pos.y+20);
+      stroke(0);
+      strokeWeight(0);
       vertex(x, y );
     }
     endShape();
