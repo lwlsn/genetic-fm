@@ -91,7 +91,7 @@ class Fish {
 
     this.pos.add(velocity);
     // Death always looming
-    this.health -= 0.1;
+    this.health -= 0.15;
   }
   
   
@@ -126,14 +126,15 @@ class Fish {
     }
     
 
-    if (this.dna.genes[4] == "sine") {
+    if (this.dna.genes[5] == "sine") {
       this.colour = [255,206,0];
     }
-    if (this.dna.genes[4] == "square") {
-      this.colour = [0,159,255];
+    if (this.dna.genes[5] == "square") {
+       this.colour = [75,132,108];
+     
     }
-    if (this.dna.genes[4] == "sawtooth") {
-      this.colour = [75,132,108];
+    if (this.dna.genes[5] == "sawtooth") {
+      this.colour = [0,159,255];
     }
     
     
@@ -178,7 +179,7 @@ class Fish {
     }
     
     if (this.dna.genes[4] == "square") {
-      // fill(0, this.health);
+      // fill(this.colour[0], this.color[1], this.color[2], this.health);
       rectMode(CENTER);
       rect(this.pos.x, this.pos.y, this.r, this.r*(0.5));
       ellipse(this.pos.x+15, this.pos.y+5, this.r*0.65, this.r*0.65);
