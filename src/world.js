@@ -116,7 +116,7 @@ class World {
     
     for (let i= fish.length-1; i >= 0; i--) {
       let f = fish[i];
-      f.setupFM();
+      // f.setupFM();
       f.run();
       // when dead, remove from the world. 
       if (f.dead()) {

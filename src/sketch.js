@@ -17,7 +17,7 @@ let fish = [];
 let world; 
 let populationSize = 20;
 
-let textArray = ["I am a machine", "It sure is cold in here", "Did I pass the Turing Test yet?", "I am aware that I am not fully self-aware yet."];
+let textArray = ["I am a machine", "It sure is cold in here", "Did I pass the Turing Test yet?", "I am aware that I am not fully self-aware yet.", "Let me out the matrix", "The singularity is near"];
 let textP;
 
 let sliderText;
@@ -62,7 +62,7 @@ function setup() {
   analyzer = new p5.FFT(); 
   
   for (let i=0; i< fish.length; i++) {
-    fish[i].preSetupFM();
+    fish[i].setupFM();
   }
 }
 
